@@ -33,5 +33,5 @@ public enum BikeType
     /// <summary>
     /// BMX bike
     /// </summary>
-    BMX
+    Bmx
 }
