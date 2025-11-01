@@ -83,7 +83,7 @@ public class BikesFixture
             },
             new() {
                 Id = 7,
-                Type = BikeType.BMX,
+                Type = BikeType.Bmx,
                 WheelSize = 20,
                 MaxWeight = 90,
                 Weight = 10.2,

@@ -99,7 +99,7 @@ public class BikesTests(BikesFixture fixture) : IClassFixture<BikesFixture>
     [InlineData(BikeType.Road, 56)]
     [InlineData(BikeType.Hybrid, 16)]
     [InlineData(BikeType.Electric, 6)]
-    [InlineData(BikeType.BMX, 11)]
+    [InlineData(BikeType.Bmx, 11)]
     public void RentalTimeByBikeType(BikeType bikeType, int expectedRentalTime)
     {
         var actualRentalTime = fixture.Rentals
