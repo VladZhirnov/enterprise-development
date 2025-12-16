@@ -1,4 +1,4 @@
-﻿namespace Bikes.Domain.Models;
+﻿namespace Bikes.Core.Entities;
 
 /// <summary>
 /// Client information
@@ -11,14 +11,14 @@ public class Client
     public required int Id { get; set; }
 
     /// <summary>
-    /// First name of the client
-    /// </summary>
-    public required string FirstName { get; set; }
-
-    /// <summary>
     /// Last name of the client
     /// </summary>
     public required string LastName { get; set; }
+
+    /// <summary>
+    /// First name of the client
+    /// </summary>
+    public required string FirstName { get; set; }
 
     /// <summary>
     /// Middle name of the client
@@ -29,4 +29,9 @@ public class Client
     /// Phone number of the client
     /// </summary>
     public required string Phone { get; set; }
+
+    /// <summary>
+    /// This client's rentals
+    /// </summary>
+    public List<Rental> Rentals { get; set; } = [];
 }

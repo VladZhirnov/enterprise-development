@@ -1,4 +1,4 @@
-﻿namespace Bikes.Domain.Enum;
+﻿namespace Bikes.Core.Enums;
 
 /// <summary>
 /// Type of bike

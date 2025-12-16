@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Bikes.Application.Contracts\Bikes.Application.Contracts.csproj" />
+		<ProjectReference Include="..\Bikes.Core\Bikes.Core.csproj" />
+		<ProjectReference Include="..\Bikes.Infrastructure.EfCore\Bikes.Infrastructure.EfCore.csproj" />
+	</ItemGroup>
+
+</Project>

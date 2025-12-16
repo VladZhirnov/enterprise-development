@@ -1,4 +1,4 @@
-﻿namespace Bikes.Domain.Models;
+﻿namespace Bikes.Core.Entities;
 
 /// <summary>
 /// Bike rental information
@@ -11,14 +11,24 @@ public class Rental
     public required int Id { get; set; }
 
     /// <summary>
+    /// Bicycle ID
+    /// </summary>
+    public required int BikeId { get; set; }
+
+    /// <summary>
     /// Rented bike
     /// </summary>
-    public required Bike Bike { get; set; }
+    public Bike? Bike { get; set; }
+
+    /// <summary>
+    /// Client ID
+    /// </summary>
+    public required int ClientId { get; set; }
 
     /// <summary>
     /// Client who rented the bike
     /// </summary>
-    public required Client Client { get; set; }
+    public Client? Client { get; set; }
 
     /// <summary>
     /// Rental start time

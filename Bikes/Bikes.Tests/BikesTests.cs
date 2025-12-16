@@ -1,4 +1,4 @@
-﻿using Bikes.Domain.Enum;
+﻿using Bikes.Core.Enums;
 using Xunit;
 
 namespace Bikes.Tests;
@@ -11,13 +11,13 @@ public class BikesTests(BikesFixture fixture) : IClassFixture<BikesFixture>
     /// <summary>
     /// Test 1: Display information about all sport bikes
     /// </summary>
-    [Fact]  
+    [Fact]
     public void SportBikesList()
     {
         var expectedBikeIds = new List<int> { 1, 5, 8 };
 
         var actualIds = fixture.Bikes
-            .Where(bike => bike.Model.Type == BikeType.Sport)
+            .Where(bike => bike.Model?.Type == BikeType.Sport)
             .Select(bike => bike.Id)
             .ToList();
 
@@ -33,10 +33,11 @@ public class BikesTests(BikesFixture fixture) : IClassFixture<BikesFixture>
         var expectedModelIds = new List<int> { 10, 1, 5, 2, 3 };
 
         var actualIds = fixture.Rentals
-            .GroupBy(rent => rent.Bike.Model.Id)
+            .GroupBy(rent => rent.Bike?.Model?.Id)
+            .Where(g => g.Key.HasValue)
             .Select(group => new
             {
-                ModelId = group.Key,
+                ModelId = group.Key!.Value,
                 TotalDuration = group.Sum(rent => rent.DurationHours)
             })
             .OrderByDescending(x => x.TotalDuration)
@@ -56,11 +57,12 @@ public class BikesTests(BikesFixture fixture) : IClassFixture<BikesFixture>
         var expectedModelIds = new List<int> { 10, 5, 1, 2, 6 };
 
         var actualIds = fixture.Rentals
-            .GroupBy(rent => rent.Bike.Model.Id)
+            .GroupBy(rent => rent.Bike?.Model?.Id)
+            .Where(g => g.Key.HasValue)
             .Select(group => new
             {
-                ModelId = group.Key,
-                TotalProfit = group.Sum(rent => rent.DurationHours * rent.Bike.Model.PricePerHour)
+                ModelId = group.Key!.Value,
+                TotalProfit = group.Sum(rent => rent.DurationHours * rent.Bike!.Model!.PricePerHour)
             })
             .OrderByDescending(x => x.TotalProfit)
             .Select(x => x.ModelId)
@@ -103,7 +105,7 @@ public class BikesTests(BikesFixture fixture) : IClassFixture<BikesFixture>
     public void RentalTimeByBikeType(BikeType bikeType, int expectedRentalTime)
     {
         var actualRentalTime = fixture.Rentals
-            .Where(rent => rent.Bike.Model.Type == bikeType)
+            .Where(rent => rent.Bike?.Model?.Type == bikeType)
             .Sum(rent => rent.DurationHours);
 
         Assert.Equal(expectedRentalTime, actualRentalTime);
@@ -118,10 +120,11 @@ public class BikesTests(BikesFixture fixture) : IClassFixture<BikesFixture>
         var expectedTopClientsIds = new List<int> { 1, 2, 6 };
 
         var actualTopClientsIds = fixture.Rentals
-            .GroupBy(rent => rent.Client.Id)
+            .GroupBy(rent => rent.Client?.Id)
+            .Where(g => g.Key.HasValue)
             .Select(group => new
             {
-                ClientId = group.Key,
+                ClientId = group.Key!.Value,
                 TotalRentals = group.Count()
             })
             .OrderByDescending(r => r.TotalRentals)

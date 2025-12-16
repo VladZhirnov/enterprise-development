@@ -1,6 +1,6 @@
-﻿using Bikes.Domain.Enum;
+﻿using Bikes.Core.Enums;
 
-namespace Bikes.Domain.Models;
+namespace Bikes.Core.Entities;
 
 /// <summary>
 /// Bike model information
@@ -46,4 +46,9 @@ public class BikeModel
     /// Rental price per hour
     /// </summary>
     public required decimal PricePerHour { get; set; }
+
+    /// <summary>
+    /// Bicycles of this model
+    /// </summary>
+    public List<Bike> Bikes { get; set; } = [];
 }
