@@ -15,7 +15,7 @@
 
 ### Application (Слой бизнес-логики)
 - **Services** - сервисы с бизнес-логикой (BikeService, ClientService, RentalService, AnalyticService)
-- **Helpers** - вспомогательные классы (MapperHelper)
+- **Mapper** - вспомогательный класс (MapperClass)
 
 ### Application.Contracts (Контракты)
 - **Dtos** - модели данных для запросов/ответов
