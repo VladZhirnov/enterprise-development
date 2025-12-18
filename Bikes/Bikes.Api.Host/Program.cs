@@ -17,7 +17,6 @@ builder.Services.AddScoped<IRepository<BikeModel>, BikeModelRepository>();
 builder.Services.AddScoped<IRepository<Bike>, BikeRepository>();
 builder.Services.AddScoped<IRepository<Client>, ClientRepository>();
 builder.Services.AddScoped<IRepository<Rental>, RentalRepository>();
-builder.Services.AddScoped<RentalRepository>();
 
 builder.Services.AddScoped<IBikeModelService, BikeModelService>();
 builder.Services.AddScoped<IBikeService, BikeService>();

@@ -159,19 +159,29 @@ public static class MapperClass
     #region Analytic DTOs
 
     /// <summary>
-    /// Creates TopModelByRentalDto
+    /// Creates TopModelByRentalDto with full model information
     /// </summary>
-    public static TopModelByRentalDto ToTopModelByRentalDto(int modelId, int totalDuration)
+    public static TopModelByRentalDto ToTopModelByRentalDto(
+        int modelId,
+        string modelType,
+        int modelYear,
+        string brakeType,
+        int totalDuration)
     {
-        return new TopModelByRentalDto(modelId, totalDuration);
+        return new TopModelByRentalDto(modelId, modelType, modelYear, brakeType, totalDuration);
     }
 
     /// <summary>
-    /// Creates TopModelByProfitDto
+    /// Creates TopModelByProfitDto with full model information
     /// </summary>
-    public static TopModelByProfitDto ToTopModelByProfitDto(int modelId, decimal totalProfit)
+    public static TopModelByProfitDto ToTopModelByProfitDto(
+        int modelId,
+        string modelType,
+        int modelYear,
+        decimal pricePerHour,
+        decimal totalProfit)
     {
-        return new TopModelByProfitDto(modelId, totalProfit);
+        return new TopModelByProfitDto(modelId, modelType, modelYear, pricePerHour, totalProfit);
     }
 
     /// <summary>

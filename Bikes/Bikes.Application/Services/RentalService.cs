@@ -19,9 +19,9 @@ public class RentalService(
     /// </summary>
     public async Task<int> CreateRental(RentalCreateDto dto)
     {
-        var bike = await bikeRepository.Read(dto.BikeId)
+        _ = await bikeRepository.Read(dto.BikeId)
             ?? throw new ArgumentException("Invalid Bike ID");
-        var client = await clientRepository.Read(dto.ClientId)
+        _ = await clientRepository.Read(dto.ClientId)
             ?? throw new ArgumentException("Invalid Client ID");
 
         var entity = MapperClass.ToEntity(dto);
@@ -43,10 +43,9 @@ public class RentalService(
         if (bike == null) return [];
 
         var rentals = await rentalRepository.Read();
-        return rentals
+        return [.. rentals
             .Where(r => r.BikeId == bikeId)
-            .Select(MapperClass.ToDto)
-            .ToList();
+            .Select(MapperClass.ToDto)];
     }
 
     /// <summary>
@@ -58,10 +57,9 @@ public class RentalService(
         if (client == null) return [];
 
         var rentals = await rentalRepository.Read();
-        return rentals
+        return [.. rentals
             .Where(r => r.ClientId == clientId)
-            .Select(MapperClass.ToDto)
-            .ToList();
+            .Select(MapperClass.ToDto)];
     }
 
     /// <summary>
@@ -78,9 +76,9 @@ public class RentalService(
     /// </summary>
     public async Task<RentalDto?> UpdateRental(int id, RentalCreateDto dto)
     {
-        var bike = await bikeRepository.Read(dto.BikeId)
+        _ = await bikeRepository.Read(dto.BikeId)
             ?? throw new ArgumentException("Invalid Bike ID");
-        var client = await clientRepository.Read(dto.ClientId)
+        _ = await clientRepository.Read(dto.ClientId)
             ?? throw new ArgumentException("Invalid Client ID");
 
         var entity = MapperClass.ToEntity(dto);

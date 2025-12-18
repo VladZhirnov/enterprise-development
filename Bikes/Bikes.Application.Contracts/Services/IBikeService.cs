@@ -28,12 +28,6 @@ public interface IBikeService
     public Task<List<BikeDto>> GetBikesByModelId(int modelId);
 
     /// <summary>
-    /// Gets sport bikes
-    /// </summary>
-    /// <returns>List of all sport bikes</returns>
-    public Task<List<BikeDto>> GetSportBikes();
-
-    /// <summary>
     /// Gets bike by ID
     /// </summary>
     /// <param name="id">Bike ID</param>

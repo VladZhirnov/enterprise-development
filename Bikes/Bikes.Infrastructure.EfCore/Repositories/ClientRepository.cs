@@ -67,22 +67,4 @@ public class ClientRepository(AppDbContext dbContext) : IRepository<Client>
 
         return true;
     }
-
-    /// <summary>
-    /// Get top clients by number of rentals
-    /// </summary>
-    public async Task<List<Client>> GetTopClients(int topN)
-    {
-        return await dbContext.Clients
-            .Include(c => c.Rentals)
-            .Select(c => new
-            {
-                Client = c,
-                RentalCount = c.Rentals.Count
-            })
-            .OrderByDescending(x => x.RentalCount)
-            .Take(topN)
-            .Select(x => x.Client)
-            .ToListAsync();
-    }
 }

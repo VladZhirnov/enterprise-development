@@ -18,7 +18,7 @@ public class BikeService(
     /// </summary>
     public async Task<int> CreateBike(BikeCreateDto dto)
     {
-        var model = await modelRepository.Read(dto.ModelId)
+        _ = await modelRepository.Read(dto.ModelId)
             ?? throw new ArgumentException("Invalid BikeModel ID");
 
         var entity = MapperClass.ToEntity(dto);
@@ -40,22 +40,9 @@ public class BikeService(
         if (model == null) return [];
 
         var bikes = await bikeRepository.Read();
-        return bikes
+        return [.. bikes
             .Where(b => b.ModelId == modelId)
-            .Select(MapperClass.ToDto)
-            .ToList();
-    }
-
-    /// <summary>
-    /// Get sport bikes
-    /// </summary>
-    public async Task<List<BikeDto>> GetSportBikes()
-    {
-        var bikes = await bikeRepository.Read();
-        return bikes
-            .Where(b => b.Model?.Type == Core.Enums.BikeType.Sport)
-            .Select(MapperClass.ToDto)
-            .ToList();
+            .Select(MapperClass.ToDto)];
     }
 
     /// <summary>
@@ -72,7 +59,7 @@ public class BikeService(
     /// </summary>
     public async Task<BikeDto?> UpdateBike(int id, BikeCreateDto dto)
     {
-        var model = await modelRepository.Read(dto.ModelId)
+        _ = await modelRepository.Read(dto.ModelId)
             ?? throw new ArgumentException("Invalid BikeModel ID");
 
         var entity = MapperClass.ToEntity(dto);

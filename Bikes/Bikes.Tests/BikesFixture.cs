@@ -18,8 +18,8 @@ public class BikesFixture
     /// </summary>
     public BikesFixture()
     {
-        BikeModels = new List<BikeModel>
-        {
+        BikeModels =
+        [
             new() {
                 Id = 1,
                 Type = BikeType.Sport,
@@ -29,7 +29,7 @@ public class BikesFixture
                 BrakeType = "Disc",
                 ModelYear = 2023,
                 PricePerHour = 15.0m,
-                Bikes = new List<Bike>()
+                Bikes = []
             },
             new() {
                 Id = 2,
@@ -40,7 +40,7 @@ public class BikesFixture
                 BrakeType = "Hydraulic",
                 ModelYear = 2023,
                 PricePerHour = 12.0m,
-                Bikes = new List<Bike>()
+                Bikes = []
             },
             new() {
                 Id = 3,
@@ -51,7 +51,7 @@ public class BikesFixture
                 BrakeType = "Rim",
                 ModelYear = 2023,
                 PricePerHour = 8.0m,
-                Bikes = new List<Bike>()
+                Bikes = []
             },
             new() {
                 Id = 4,
@@ -62,7 +62,7 @@ public class BikesFixture
                 BrakeType = "Caliper",
                 ModelYear = 2023,
                 PricePerHour = 18.0m,
-                Bikes = new List<Bike>()
+                Bikes = []
             },
             new() {
                 Id = 5,
@@ -73,7 +73,7 @@ public class BikesFixture
                 BrakeType = "Disc",
                 ModelYear = 2024,
                 PricePerHour = 20.0m,
-                Bikes = new List<Bike>()
+                Bikes = []
             },
             new() {
                 Id = 6,
@@ -84,7 +84,7 @@ public class BikesFixture
                 BrakeType = "Disc",
                 ModelYear = 2023,
                 PricePerHour = 25.0m,
-                Bikes = new List<Bike>()
+                Bikes = []
             },
             new() {
                 Id = 7,
@@ -95,7 +95,7 @@ public class BikesFixture
                 BrakeType = "U-Brake",
                 ModelYear = 2023,
                 PricePerHour = 10.0m,
-                Bikes = new List<Bike>()
+                Bikes = []
             },
             new() {
                 Id = 8,
@@ -106,7 +106,7 @@ public class BikesFixture
                 BrakeType = "Rim",
                 ModelYear = 2023,
                 PricePerHour = 12.0m,
-                Bikes = new List<Bike>()
+                Bikes = []
             },
             new() {
                 Id = 9,
@@ -117,7 +117,7 @@ public class BikesFixture
                 BrakeType = "Hydraulic",
                 ModelYear = 2024,
                 PricePerHour = 14.0m,
-                Bikes = new List<Bike>()
+                Bikes = []
             },
             new() {
                 Id = 10,
@@ -128,19 +128,19 @@ public class BikesFixture
                 BrakeType = "Caliper",
                 ModelYear = 2023,
                 PricePerHour = 16.0m,
-                Bikes = new List<Bike>()
+                Bikes = []
             }
-        };
+        ];
 
-        Clients = new List<Client>
-        {
+        Clients =
+        [
             new() {
                 Id = 1,
                 FirstName = "Ivan",
                 LastName = "Petrov",
                 MiddleName = "Sergeevich",
                 Phone = "+7-911-111-11-11",
-                Rentals = new List<Rental>()
+                Rentals = []
             },
             new() {
                 Id = 2,
@@ -148,7 +148,7 @@ public class BikesFixture
                 LastName = "Ivanova",
                 MiddleName = "Alexandrovna",
                 Phone = "+7-922-222-22-22",
-                Rentals = new List<Rental>()
+                Rentals = []
             },
             new() {
                 Id = 3,
@@ -156,7 +156,7 @@ public class BikesFixture
                 LastName = "Sidorov",
                 MiddleName = "Vladimirovich",
                 Phone = "+7-933-333-33-33",
-                Rentals = new List<Rental>()
+                Rentals = []
             },
             new() {
                 Id = 4,
@@ -164,7 +164,7 @@ public class BikesFixture
                 LastName = "Kuznetsova",
                 MiddleName = "Dmitrievna",
                 Phone = "+7-944-444-44-44",
-                Rentals = new List<Rental>()
+                Rentals = []
             },
             new() {
                 Id = 5,
@@ -172,7 +172,7 @@ public class BikesFixture
                 LastName = "Smirnov",
                 MiddleName = "Igorevich",
                 Phone = "+7-955-555-55-55",
-                Rentals = new List<Rental>()
+                Rentals = []
             },
             new() {
                 Id = 6,
@@ -180,7 +180,7 @@ public class BikesFixture
                 LastName = "Popova",
                 MiddleName = "Sergeevna",
                 Phone = "+7-966-666-66-66",
-                Rentals = new List<Rental>()
+                Rentals = []
             },
             new() {
                 Id = 7,
@@ -188,7 +188,7 @@ public class BikesFixture
                 LastName = "Vasiliev",
                 MiddleName = "Petrovich",
                 Phone = "+7-977-777-77-77",
-                Rentals = new List<Rental>()
+                Rentals = []
             },
             new() {
                 Id = 8,
@@ -196,7 +196,7 @@ public class BikesFixture
                 LastName = "Novikova",
                 MiddleName = "Andreevna",
                 Phone = "+7-988-888-88-88",
-                Rentals = new List<Rental>()
+                Rentals = []
             },
             new() {
                 Id = 9,
@@ -204,7 +204,7 @@ public class BikesFixture
                 LastName = "Fedorov",
                 MiddleName = "Nikolaevich",
                 Phone = "+7-999-999-99-99",
-                Rentals = new List<Rental>()
+                Rentals = []
             },
             new() {
                 Id = 10,
@@ -212,19 +212,19 @@ public class BikesFixture
                 LastName = "Morozova",
                 MiddleName = "Viktorovna",
                 Phone = "+7-900-000-00-00",
-                Rentals = new List<Rental>()
+                Rentals = []
             }
-        };
+        ];
 
-        Bikes = new List<Bike>
-        {
+        Bikes =
+        [
             new() {
                 Id = 1,
                 SerialNumber = "SN000001",
                 Color = "Red",
                 ModelId = 1,
                 Model = BikeModels[0],
-                Rentals = new List<Rental>()
+                Rentals = []
             },
             new() {
                 Id = 2,
@@ -232,7 +232,7 @@ public class BikesFixture
                 Color = "Blue",
                 ModelId = 2,
                 Model = BikeModels[1],
-                Rentals = new List<Rental>()
+                Rentals = []
             },
             new() {
                 Id = 3,
@@ -240,7 +240,7 @@ public class BikesFixture
                 Color = "Green",
                 ModelId = 3,
                 Model = BikeModels[2],
-                Rentals = new List<Rental>()
+                Rentals = []
             },
             new() {
                 Id = 4,
@@ -248,7 +248,7 @@ public class BikesFixture
                 Color = "Black",
                 ModelId = 4,
                 Model = BikeModels[3],
-                Rentals = new List<Rental>()
+                Rentals = []
             },
             new() {
                 Id = 5,
@@ -256,7 +256,7 @@ public class BikesFixture
                 Color = "White",
                 ModelId = 5,
                 Model = BikeModels[4],
-                Rentals = new List<Rental>()
+                Rentals = []
             },
             new() {
                 Id = 6,
@@ -264,7 +264,7 @@ public class BikesFixture
                 Color = "Yellow",
                 ModelId = 6,
                 Model = BikeModels[5],
-                Rentals = new List<Rental>()
+                Rentals = []
             },
             new() {
                 Id = 7,
@@ -272,7 +272,7 @@ public class BikesFixture
                 Color = "Silver",
                 ModelId = 7,
                 Model = BikeModels[6],
-                Rentals = new List<Rental>()
+                Rentals = []
             },
             new() {
                 Id = 8,
@@ -280,7 +280,7 @@ public class BikesFixture
                 Color = "Orange",
                 ModelId = 8,
                 Model = BikeModels[7],
-                Rentals = new List<Rental>()
+                Rentals = []
             },
             new() {
                 Id = 9,
@@ -288,7 +288,7 @@ public class BikesFixture
                 Color = "Purple",
                 ModelId = 9,
                 Model = BikeModels[8],
-                Rentals = new List<Rental>()
+                Rentals = []
             },
             new() {
                 Id = 10,
@@ -296,17 +296,17 @@ public class BikesFixture
                 Color = "Red",
                 ModelId = 10,
                 Model = BikeModels[9],
-                Rentals = new List<Rental>()
+                Rentals = []
             }
-        };
+        ];
 
         foreach (var bike in Bikes)
         {
             bike.Model?.Bikes.Add(bike);
         }
 
-        Rentals = new List<Rental>
-        {
+        Rentals =
+        [
             new() {
                 Id = 1,
                 StartTime = new DateTime(2024, 1, 10, 9, 0, 0),
@@ -487,7 +487,7 @@ public class BikesFixture
                 BikeId = 10,
                 Bike = Bikes[9]
             }
-        };
+        ];
 
         foreach (var rental in Rentals)
         {

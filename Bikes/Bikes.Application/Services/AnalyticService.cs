@@ -3,7 +3,6 @@ using Bikes.Application.Contracts.Services;
 using Bikes.Application.Mapper;
 using Bikes.Core.Entities;
 using Bikes.Core.Repositories;
-using Bikes.Infrastructure.EfCore.Repositories;
 
 namespace Bikes.Application.Services;
 
@@ -13,8 +12,7 @@ namespace Bikes.Application.Services;
 public class AnalyticService(
     IRepository<Rental> rentalRepository,
     IRepository<Bike> bikeRepository,
-    IRepository<Client> clientRepository,
-    RentalRepository rentalRepo) : IAnalyticService
+    IRepository<Client> clientRepository) : IAnalyticService
 {
     /// <summary>
     /// Display information about all sport bikes
@@ -22,10 +20,9 @@ public class AnalyticService(
     public async Task<List<BikeDto>> GetSportBikes()
     {
         var bikes = await bikeRepository.Read();
-        return bikes
+        return [.. bikes
             .Where(b => b.Model?.Type == Core.Enums.BikeType.Sport)
-            .Select(MapperClass.ToDto)
-            .ToList();
+            .Select(MapperClass.ToDto)];
     }
 
     /// <summary>
@@ -33,10 +30,36 @@ public class AnalyticService(
     /// </summary>
     public async Task<List<TopModelByRentalDto>> GetTopModelsByRentalDuration()
     {
-        var topModels = await rentalRepo.GetTopModelsByRentalDuration(5);
-        return topModels
-            .Select(x => MapperClass.ToTopModelByRentalDto(x.ModelId, x.TotalDuration))
+        var rentals = await rentalRepository.Read();
+
+        var topModels = rentals
+            .Where(r => r.Bike?.Model != null)
+            .GroupBy(r => new
+            {
+                ModelId = r.Bike!.Model!.Id,
+                ModelType = r.Bike.Model.Type,
+                r.Bike.Model.ModelYear,
+                r.Bike.Model.BrakeType
+            })
+            .Select(g => new
+            {
+                g.Key.ModelId,
+                g.Key.ModelType,
+                g.Key.ModelYear,
+                g.Key.BrakeType,
+                TotalDuration = g.Sum(r => r.DurationHours)
+            })
+            .OrderByDescending(x => x.TotalDuration)
+            .Take(5)
             .ToList();
+
+        return [.. topModels
+            .Select(x => MapperClass.ToTopModelByRentalDto(
+                x.ModelId,
+                x.ModelType.ToString(),
+                x.ModelYear,
+                x.BrakeType,
+                x.TotalDuration))];
     }
 
     /// <summary>
@@ -44,10 +67,36 @@ public class AnalyticService(
     /// </summary>
     public async Task<List<TopModelByProfitDto>> GetTopModelsByProfit()
     {
-        var topModels = await rentalRepo.GetTopModelsByProfit(5);
-        return topModels
-            .Select(x => MapperClass.ToTopModelByProfitDto(x.ModelId, x.TotalProfit))
+        var rentals = await rentalRepository.Read();
+
+        var topModels = rentals
+            .Where(r => r.Bike?.Model != null)
+            .GroupBy(r => new
+            {
+                ModelId = r.Bike!.Model!.Id,
+                ModelType = r.Bike.Model.Type,
+                r.Bike.Model.ModelYear,
+                r.Bike.Model.PricePerHour
+            })
+            .Select(g => new
+            {
+                g.Key.ModelId,
+                g.Key.ModelType,
+                g.Key.ModelYear,
+                g.Key.PricePerHour,
+                TotalProfit = g.Sum(r => r.DurationHours * r.Bike!.Model!.PricePerHour)
+            })
+            .OrderByDescending(x => x.TotalProfit)
+            .Take(5)
             .ToList();
+
+        return [.. topModels
+            .Select(x => MapperClass.ToTopModelByProfitDto(
+                x.ModelId,
+                x.ModelType.ToString(),
+                x.ModelYear,
+                x.PricePerHour,
+                x.TotalProfit))];
     }
 
     /// <summary>
@@ -55,8 +104,19 @@ public class AnalyticService(
     /// </summary>
     public async Task<RentalDurationStatsDto> GetRentalDurationStatistics()
     {
-        var stats = await rentalRepo.GetRentalDurationStatistics();
-        return MapperClass.ToRentalDurationStatsDto(stats.Min, stats.Max, stats.Avg);
+        var rentals = await rentalRepository.Read();
+
+        if (rentals.Count == 0)
+        {
+            return new RentalDurationStatsDto(0, 0, 0);
+        }
+
+        var durations = rentals.Select(r => r.DurationHours).ToList();
+        var min = durations.Min();
+        var max = durations.Max();
+        var avg = durations.Average();
+
+        return MapperClass.ToRentalDurationStatsDto(min, max, avg);
     }
 
     /// <summary>
@@ -64,12 +124,19 @@ public class AnalyticService(
     /// </summary>
     public async Task<List<RentalTimeByBikeTypeDto>> GetRentalTimeByBikeType()
     {
-        var stats = await rentalRepo.GetRentalStatisticsByBikeType();
-        return stats
-            .Select(kvp => MapperClass.ToRentalTimeByBikeTypeDto(
-                kvp.Key.ToString(),
-                kvp.Value))
+        var rentals = await rentalRepository.Read();
+
+        var stats = rentals
+            .Where(r => r.Bike?.Model != null)
+            .GroupBy(r => r.Bike!.Model!.Type)
+            .Select(g => new
+            {
+                BikeType = g.Key.ToString(),
+                TotalHours = g.Sum(r => r.DurationHours)
+            })
             .ToList();
+
+        return [.. stats.Select(s => MapperClass.ToRentalTimeByBikeTypeDto(s.BikeType, s.TotalHours))];
     }
 
     /// <summary>

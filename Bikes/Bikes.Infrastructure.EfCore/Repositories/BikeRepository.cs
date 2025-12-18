@@ -82,22 +82,4 @@ public class BikeRepository(AppDbContext dbContext) : IRepository<Bike>
 
         return true;
     }
-
-    /// <summary>
-    /// Get bikes by model ID
-    /// </summary>
-    public async Task<List<Bike>> GetBikesByModelId(int modelId) =>
-        await dbContext.Bikes
-            .Include(b => b.Model)
-            .Where(b => b.ModelId == modelId)
-            .ToListAsync();
-
-    /// <summary>
-    /// Get sport bikes
-    /// </summary>
-    public async Task<List<Bike>> GetSportBikes() =>
-        await dbContext.Bikes
-            .Include(b => b.Model)
-            .Where(b => b.Model != null && b.Model.Type == Core.Enums.BikeType.Sport)
-            .ToListAsync();
 }

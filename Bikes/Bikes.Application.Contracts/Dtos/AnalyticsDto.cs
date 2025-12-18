@@ -1,19 +1,24 @@
 ﻿namespace Bikes.Application.Contracts.Dtos;
 
 /// <summary>
-/// DTOs for analytic endpoints
-/// </summary>
-public static class AnalyticsDto { }
-
-/// <summary>
 /// Top models by rental duration
 /// </summary>
-public record TopModelByRentalDto(int ModelId, int TotalDuration);
+public record TopModelByRentalDto(
+    int ModelId,
+    string ModelType,
+    int ModelYear,
+    string BrakeType,
+    int TotalDuration);
 
 /// <summary>
 /// Top models by profit
 /// </summary>
-public record TopModelByProfitDto(int ModelId, decimal TotalProfit);
+public record TopModelByProfitDto(
+    int ModelId,
+    string ModelType,
+    int ModelYear,
+    decimal PricePerHour,
+    decimal TotalProfit);
 
 /// <summary>
 /// Rental duration statistics

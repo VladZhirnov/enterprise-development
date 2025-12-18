@@ -3,36 +3,8 @@
 /// <summary>
 /// DTO for reading a bicycle
 /// </summary>
-public record BikeDto
-{
-    /// <summary>
-    /// Unique bicycle identifier
-    /// </summary>
-    public int Id { get; init; }
-
-    /// <summary>
-    /// Serial number
-    /// </summary>
-    public string SerialNumber { get; init; }
-
-    /// <summary>
-    /// Bicycle color
-    /// </summary>
-    public string Color { get; init; }
-
-    /// <summary>
-    /// Bicycle model
-    /// </summary>
-    public BikeModelDto Model { get; init; }
-
-    /// <summary>
-    /// DTO constructor
-    /// </summary>
-    public BikeDto(int id, string serialNumber, string color, BikeModelDto model)
-    {
-        Id = id;
-        SerialNumber = serialNumber;
-        Color = color;
-        Model = model;
-    }
-}
+/// <param name="Id">Unique bicycle identifier</param>
+/// <param name="SerialNumber">Serial number</param>
+/// <param name="Color">Bicycle color</param>
+/// <param name="Model">Bicycle model</param>
+public record BikeDto(int Id, string SerialNumber, string Color, BikeModelDto Model);
