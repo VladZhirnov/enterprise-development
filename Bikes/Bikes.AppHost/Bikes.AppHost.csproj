@@ -13,10 +13,13 @@
 	<ItemGroup>
 		<PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.0" />
 		<PackageReference Include="Aspire.Hosting.SqlServer" Version="9.5.0" />
+		<PackageReference Include="Aspire.Hosting.Nats" Version="9.5.0" />
+		<PackageReference Include="Aspire.NATS.Net" Version="9.5.2" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\Bikes.Api.Host\Bikes.Api.Host.csproj" />
+		<ProjectReference Include="..\Bikes.Generator.Nats.Host\Bikes.Generator.Nats.Host.csproj" />
 		<ProjectReference Include="..\Bikes.ServiceDefaults\Bikes.ServiceDefaults.csproj" />
 	</ItemGroup>
 

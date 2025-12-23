@@ -12,7 +12,9 @@
 ### Infrastructure (Слой данных)
 - **Data** - DbContext и DataSeeder с тестовыми данными
 - **Repositories** - реализации репозиториев
-
+- **Nats** - клиент для работы с шиной сообщений NATS
+- **Validator.Nats** - сервис валидации сообщений NATS
+	
 ### Application (Слой бизнес-логики)
 - **Services** - сервисы с бизнес-логикой (BikeService, ClientService, RentalService, AnalyticService)
 - **Mapper** - вспомогательный класс (MapperClass)
@@ -20,9 +22,18 @@
 ### Application.Contracts (Контракты)
 - **Dtos** - модели данных для запросов/ответов
 - **Services** - интерфейсы сервисов
+- **Nats** - контракты сообщений (BatchMessage, BatchAckResponse)
 
 ### Api.Host (Веб-слой)
 - **Controllers** - REST API контроллеры
+- **BikesNatsConsumer** - потребление сообщений из NATS
+- **RentalValidatorService** - валидация аренд
+
+### Generator.Nats.Host (Сервис генерации)
+- **Interface** - интерфейсы для работы с NATS
+- **Controller** - контроллер для запуска генерации
+- **BikesNatsProducer** - продюсер сообщений NATS
+- **RentalGenerator** - генератор тестовых данных
 
 ### AppHost (Aspire оркестратор)
 

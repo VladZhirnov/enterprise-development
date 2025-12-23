@@ -4,7 +4,9 @@ using Bikes.Core.Entities;
 using Bikes.Core.Repositories;
 using Bikes.Infrastructure.EfCore.Data;
 using Bikes.Infrastructure.EfCore.Repositories;
+using Bikes.Infrastructure.Nats;
 using Bikes.ServiceDefaults;
+using Bikes.Validator.Nats;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +25,10 @@ builder.Services.AddScoped<IBikeService, BikeService>();
 builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<IRentalService, RentalService>();
 builder.Services.AddScoped<IAnalyticService, AnalyticService>();
+
+builder.Services.AddHostedService<BikesNatsConsumer>();
+builder.Services.AddHostedService<RentalValidatorService>();
+builder.AddNatsClient("bikes-nats");
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");

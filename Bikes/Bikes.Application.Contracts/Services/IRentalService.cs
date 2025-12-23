@@ -55,4 +55,13 @@ public interface IRentalService
     /// <param name="id">Rental ID</param>
     /// <returns>True if deleted, false if not found</returns>
     public Task<bool> DeleteRental(int id);
+
+    /// <summary>
+    /// Receives and saves a batch of rental contracts to the database.
+    /// </summary>
+    /// <param name="contracts">
+    /// A collection of <see cref="RentalCreateDto"/> objects representing the received rental contracts.
+    /// </param>
+    public Task<int> ReceiveContractList(IList<RentalCreateDto> contracts);
+
 }

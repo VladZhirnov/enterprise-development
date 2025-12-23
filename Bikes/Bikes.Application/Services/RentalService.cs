@@ -91,4 +91,25 @@ public class RentalService(
     /// </summary>
     public async Task<bool> DeleteRental(int id) =>
         await rentalRepository.Delete(id);
+
+    /// <summary>
+    /// Receives and saves a batch of rental contracts to the database.
+    /// </summary>
+    public async Task<int> ReceiveContractList(IList<RentalCreateDto> contracts)
+    {
+        var entities = contracts.Select(MapperClass.ToEntity).ToList();
+
+        foreach (var entity in entities)
+        {
+            _ = await bikeRepository.Read(entity.BikeId)
+                ?? throw new ArgumentException($"Invalid Bike ID: {entity.BikeId}");
+            _ = await clientRepository.Read(entity.ClientId)
+                ?? throw new ArgumentException($"Invalid Client ID: {entity.ClientId}");
+
+            await rentalRepository.Create(entity);
+        }
+
+        return entities.Count;
+    }
+
 }

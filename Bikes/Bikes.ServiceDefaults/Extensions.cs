@@ -65,9 +65,8 @@ public static class Extensions
                     .AddAspNetCoreInstrumentation(tracing =>
                         // Exclude health check requests from tracing
                         tracing.Filter = context =>
-                            !context.Request.Path.StartsWithSegments(HealthEndpointPath)
-                            && !context.Request.Path.StartsWithSegments(AlivenessEndpointPath)
-                    )
+                            !context.Request.Path.StartsWithSegments(HealthEndpointPath) &&
+                            !context.Request.Path.StartsWithSegments(AlivenessEndpointPath))
                     .AddHttpClientInstrumentation();
             });
 
